@@ -1,4 +1,4 @@
-public class HList
+public class HouseList
 {
 	public static void main(String [] args)
 	{
