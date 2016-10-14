@@ -4,14 +4,13 @@ public class HouseList
 	{
 		try
 		{
-			AList<House> realEstate = new AList<House>(5);
+			AList<House> realEstate = new AList<House>();
 			realEstate.add(new House("31 Main Street", 12));
 			realEstate.add(new House("7 Randolph Avenue", 19));
-			System.out.println("Donald Trump owns " + realEstate);
 			realEstate.add(new House("20 Baldwin Road", 10), 2);
 			System.out.println(realEstate);
-			realEstate.delete();
-			System.out.println(realEstate);
+			realEstate.get(2);
+			//realEstate.add(null);
 		}
 		catch(ListException e)
 		{

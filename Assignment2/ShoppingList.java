@@ -4,7 +4,7 @@ public class ShoppingList
 	{
 		try
 		{
-			AList <String>x = new AList<String>(5);
+			AList <String>x = new AList<String>();
 			x.add("Bread");
 			x.add("Milk");
 			x.add("Butter");
