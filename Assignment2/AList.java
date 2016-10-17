@@ -52,7 +52,7 @@ public class AList<T> implements List<T>
 		count++;
 	}
 	
-	public void get(int position) throws ListException
+	public T get(int position) throws ListException
 	{
 		if(position < 1 || position > count)
 		{
@@ -62,16 +62,77 @@ public class AList<T> implements List<T>
 		{
 			throw new ListException("Error. Unable to get. List is empty.");
 		}
-		System.out.println(List[position-1]);
+		return List[position-1];
 	}
 	
-	public void set(T t, int pos)
+	public T set(T t, int pos) throws ListException
 	{
+		if(t == null)
+		{
+			throw new ListException("Error. Unable to replace. Replacement cannot be null.");
+		}
+		if(pos < 1 || pos > count)
+		{
+			throw new ListException("Error. Unable to replace. Bad position.");
+		}
+		if(count == 0)
+		{
+			throw new ListException("Error. Unable to replace. List is empty.");
+		}
+		T temp = List[pos-1];
 		List[pos-1] = t;
+		return temp;
+	}
+	
+	public int find(T t, int start, int end) throws ListException
+	{
+		if(start < 1 || start > count)
+		{
+			throw new ListException("Error. Unable to find. Start position is bad.");
+		}
+		if(end < 1 || end > count)
+		{
+			throw new ListException("Error. Unable to find. End position is bad.");
+		}
+		if(start > end)
+		{
+			return -1;
+		}
+		for(int i = start-1; i < end-1; i++)
+		{
+			if(List[i].equals(t))
+			{
+				return i;
+			}
+		}
+		return -1;
+		
+	}
+	
+	public int size()
+	{
+		return count;
 	}
 
+	public String toString()
+	{	
+		if(count == 0)
+		{
+			return "list is empty";
+		}
+		else
+		{
+			String temp = "";
+			for(int i = 0; i < count; i++)
+			{
+				temp += List[i] + "\n";
+			}
+			return temp;
+		}
+		//return List[0].toString();
+	}
 
-	public T delete() throws ListException
+	/*public T delete() throws ListException
 	{
 		if(count > 0)
 		{
@@ -84,7 +145,7 @@ public class AList<T> implements List<T>
 		{
 			throw new ListException("Cannot delete. List is empty");
 		}
-	}
+	}*/
 
 	public T remove(int position) throws ListException
 	{
@@ -108,21 +169,25 @@ public class AList<T> implements List<T>
 			throw new ListException("Position out of bounds. Please try again.");
 		}
 	}
-
-	public String toString()
+	
+	public void clear()
+	{
+		for(int i = 0; i<count; i++)
+		{
+			List[i] = null;
+		}
+	}
+	
+	public boolean isEmpty()
 	{
 		if(count == 0)
 		{
-			return "list is empty";
+			return true;
 		}
 		else
 		{
-			String temp = "";
-			for(int i = 0; i < count; i++)
-			{
-				temp += List[i] + "\n";
-			}
-			return temp;
+			return false;
 		}
 	}
+
 }
