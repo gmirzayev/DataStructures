@@ -25,7 +25,7 @@ public class AList<T> implements List<T>
 			throw new ListException("Error unable to add. Cannot add null entries.");
 		}
 	}
-	
+
 	public void add(T item, int position) throws ListException
 	{
 		if(count == 0)
@@ -51,7 +51,7 @@ public class AList<T> implements List<T>
 		List[position-1] = item;
 		count++;
 	}
-	
+
 	public T get(int position) throws ListException
 	{
 		if(position < 1 || position > count)
@@ -64,7 +64,7 @@ public class AList<T> implements List<T>
 		}
 		return List[position-1];
 	}
-	
+
 	public T set(T t, int pos) throws ListException
 	{
 		if(t == null)
@@ -83,7 +83,7 @@ public class AList<T> implements List<T>
 		List[pos-1] = t;
 		return temp;
 	}
-	
+
 	public int find(T t, int start, int end) throws ListException
 	{
 		if(start < 1 || start > count)
@@ -106,16 +106,16 @@ public class AList<T> implements List<T>
 			}
 		}
 		return -1;
-		
+
 	}
-	
+
 	public int size()
 	{
 		return count;
 	}
 
 	public String toString()
-	{	
+	{
 		if(count == 0)
 		{
 			return "list is empty";
@@ -169,7 +169,7 @@ public class AList<T> implements List<T>
 			throw new ListException("Position out of bounds. Please try again.");
 		}
 	}
-	
+
 	public void clear()
 	{
 		for(int i = 0; i<count; i++)
@@ -177,7 +177,7 @@ public class AList<T> implements List<T>
 			List[i] = null;
 		}
 	}
-	
+
 	public boolean isEmpty()
 	{
 		if(count == 0)
@@ -187,6 +187,39 @@ public class AList<T> implements List<T>
 		else
 		{
 			return false;
+		}
+	}
+
+	public int contains(T item, int start, int end) throws ListException
+	{
+		int k = start-1;
+		if(!(start >=1 && start<=count))
+		{
+			throw new ListException("Cannot locate item. Start point is bad.");
+		}
+		if(!(end >=1 && end<=count))
+		{
+			throw new ListException("Cannot locate item. End point is bad.");
+		}
+		while(k<=end-1)
+		{
+			if(List[k].equals(item)==true)
+			{
+				return k+1;
+			}
+			k++;
+		}
+		return -1;
+	}
+
+	public void contains(T item) throws ListException
+	{
+		int foundAt;
+		foundAt = contains(item, 1, count);
+		while(foundAt != -1)
+		{
+			System.out.println(item + "is found at position" + foundAt);
+			foundAt = contains(item, foundAt+1, count);
 		}
 	}
 
